@@ -1,0 +1,55 @@
+# =====================
+# ENVIRONMENT FILES
+# =====================
+.env
+.env.local
+.env.*.local
+*.local
+
+# =====================
+# NODE / FRONTEND
+# =====================
+node_modules/
+node_modules
+dist/
+dist
+dist-ssr
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =====================
+# JAVA / SPRING BOOT
+# =====================
+target/
+*.jar
+*.war
+*.class
+*.log
+logs
+
+# =====================
+# IDE / SYSTEM FILES
+# =====================
+.vscode/
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.idea
+*.iml
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# =====================
+# BUILD / CACHE
+# =====================
+build/
+out/
