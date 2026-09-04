@@ -12,8 +12,6 @@ export const AuthProvider = ({ children }) => {
     const checkAuthStatus = async () => {
       try {
         await api.get('/api/categories');
-        const userRes = await api.get('/api/auth/me');
-        setUser(userRes.data);
         setIsAuthenticated(true);
       } catch (error) {
         setIsAuthenticated(false);
@@ -32,8 +30,6 @@ export const AuthProvider = ({ children }) => {
     };
     const response = await api.post('/api/auth/login', payload);
     if (response.status === 200 || response.status === 201) {
-      const userRes = await api.get('/api/auth/me');
-      setUser(userRes.data);
       setIsAuthenticated(true);
     }
   };

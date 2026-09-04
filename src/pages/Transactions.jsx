@@ -47,8 +47,8 @@ const Transactions = () => {
         api.get(`/api/transactions?${params.toString()}`, { withCredentials: true }),
         api.get('/api/categories', { withCredentials: true })
       ]);
-      setTransactions(txnRes.data);
-      setCategories(catRes.data);
+      setTransactions(txnRes.data.transactions || txnRes.data || []);
+      setCategories(catRes.data.categories || catRes.data || []);
     } catch (error) {
       console.error('Error fetching data:', error);
       toast.error("Failed to load transactions.");
@@ -74,12 +74,11 @@ const Transactions = () => {
   };
 
   const handleEditClick = (txn) => {
-    const catMatch = categories.find(c => c.name === txn.category);
     setEditingTransaction(txn);
     setFormData({
       amount: txn.amount,
       type: txn.type,
-      category: catMatch ? catMatch.id : '',
+      category: txn.category || '',
       description: txn.description,
       date: txn.date
     });
@@ -105,7 +104,7 @@ const Transactions = () => {
     const payload = {
       amount: Number(formData.amount),
       type: formData.type,
-      category: Number(formData.category),
+      category: formData.category,
       description: formData.description,
       date: formData.date
     };
@@ -369,7 +368,7 @@ const Transactions = () => {
                   >
                     <option value="" disabled>Select Category</option>
                     {categories.filter(cat => cat.type === formData.type).map((cat) => (
-                      <option key={cat.id} value={cat.id}>{cat.name}</option>
+                      <option key={cat.id || cat.name} value={cat.name}>{cat.name}</option>
                     ))}
                   </select>
                 </div>

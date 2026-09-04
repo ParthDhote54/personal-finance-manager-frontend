@@ -21,14 +21,14 @@ const Dashboard = () => {
         const y = d.getFullYear();
 
         const [reportRes, transRes, goalsRes] = await Promise.all([
-          api.get(`/api/reports/summary?month=${m}&year=${y}`),
+          api.get(`/api/reports/monthly/${y}/${m}`),
           api.get('/api/transactions'),
           api.get('/api/goals')
         ]);
 
         setReport(reportRes.data);
-        setTransactions(transRes.data);
-        setGoals(goalsRes.data);
+        setTransactions(transRes.data.transactions || transRes.data || []);
+        setGoals(goalsRes.data.goals || goalsRes.data || []);
       } catch (error) {
         console.error("Failed to fetch dashboard data:", error);
       } finally {

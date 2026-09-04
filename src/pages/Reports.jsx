@@ -12,7 +12,7 @@ const Reports = () => {
   const fetchReport = async () => {
     setLoading(true);
     try {
-      const res = await api.get(`/api/reports/summary?month=${month}&year=${year}`, { withCredentials: true });
+      const res = await api.get(`/api/reports/monthly/${year}/${month}`, { withCredentials: true });
       setReport(res.data);
     } catch (e) {
       console.error('Failed to fetch report', e);

@@ -24,7 +24,7 @@ const Goals = () => {
   const fetchGoals = async () => {
     try {
       const res = await api.get('/api/goals', { withCredentials: true });
-      setGoals(res.data);
+      setGoals(res.data.goals || res.data || []);
     } catch (e) {
       console.error('Failed to fetch goals', e);
       toast.error("Failed to load goals.");

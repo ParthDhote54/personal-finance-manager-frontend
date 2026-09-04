@@ -18,7 +18,7 @@ const Categories = () => {
   const fetchCategories = async () => {
     try {
       const res = await api.get('/api/categories', { withCredentials: true });
-      setCategories(res.data);
+      setCategories(res.data.categories || res.data || []);
     } catch (e) {
       console.error('Failed to fetch categories', e);
       toast.error("Failed to load categories.");
